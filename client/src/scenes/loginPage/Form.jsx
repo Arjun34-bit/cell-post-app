@@ -49,6 +49,8 @@ const initialValueLogin = {
 };
 
 const Form = ({ url }) => {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [mode, setMode] = useState("dark");
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
