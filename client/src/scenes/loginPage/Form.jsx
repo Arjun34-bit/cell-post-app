@@ -55,12 +55,6 @@ const Form = ({ url }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const theme = useTheme();
-
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
