@@ -8,9 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix client && npm run build --prefix client"
   },
-  "exports": {
-    "main": "./index.js"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
