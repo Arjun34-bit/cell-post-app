@@ -3,8 +3,5 @@
   "name": "cell-post",
   "builds": [{ "src": "./index.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/" }],
-  "installCommand": "npm install --legacy-peer-deps",
-  "functions": {
-    "api": "./server/index.js"
-  }
+  "installCommand": "npm install --legacy-peer-deps"
 }
