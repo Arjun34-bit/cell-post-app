@@ -15,10 +15,6 @@ import { register } from "./controllers/auth.js ";
 import { createPost } from "./controllers/postsController.js";
 import { verifyToken } from "./middleware/middleAuth.js";
 
-import User from "./models/User.js";
-import Post from "./models/postModel.js";
-import { users, posts } from "./data/index.js";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
