@@ -5,8 +5,6 @@
   "routes": [{ "src": "/(.*)", "dest": "/" }],
   "installCommand": "npm install --legacy-peer-deps",
   "functions": {
-    "api": {
-      "handler": "./server/index.js"
-    }
+    "api": "./server/index.js"
   }
 }
