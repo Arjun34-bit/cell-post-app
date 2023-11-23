@@ -58,19 +58,19 @@ app.use("/users", userRoutes);
 
 app.use("/posts", postRoutes);
 
-// const __dirname1 = path.resolve();
+const __dirname1 = path.resolve();
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname1, "/client/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/client/build")));
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
-//   });
-// } else {
-//   app.get("/", (req, res) => {
-//     res.send("API is running successfully");
-//   });
-// }
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running successfully");
+  });
+}
 
 //--------------Deployment---------
 
