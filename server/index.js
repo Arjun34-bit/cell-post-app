@@ -42,10 +42,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
 // API with files
 app.post("/auth/register", upload.single("picture"), register);
 
