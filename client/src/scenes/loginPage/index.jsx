@@ -31,7 +31,7 @@ const LoginPage = () => {
       {linearLoading ? <LinearProgress color="success" /> : ""}
 
       <Box
-        width={isNonMobileScreens ? "50%" : "65%"}
+        width={isNonMobileScreens ? "50%" : "75%"}
         p="2rem"
         m="2rem auto"
         borderRadius={"1.5rem"}
