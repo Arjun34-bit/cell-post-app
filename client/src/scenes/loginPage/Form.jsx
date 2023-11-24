@@ -75,7 +75,7 @@ const Form = ({ url }) => {
       if (!formData.get("picturePath")) {
         throw new Error("Upload Image");
       }
-      const saveUserResponse = await fetch(`${url}/auth/register`, {
+      const saveUserResponse = await fetch(`/auth/register`, {
         method: "POST",
         body: formData,
       });
@@ -125,7 +125,7 @@ const Form = ({ url }) => {
   const login = async (values, onSubmitProps) => {
     try {
       dispatch(setLinearLoading(true));
-      const loggedInResponse = await fetch(`${url}/auth/login `, {
+      const loggedInResponse = await fetch(`/auth/login `, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
