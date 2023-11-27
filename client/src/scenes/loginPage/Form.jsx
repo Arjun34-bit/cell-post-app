@@ -84,12 +84,16 @@ const Form = ({ url }) => {
         throw new Error("Email Already Registered");
       }
 
+      if (saveUserResponse.status === 500) {
+        throw new Error("Server Error");
+      }
+
       const saveUser = await saveUserResponse.json();
       onSubmitProps.resetForm();
       dispatch(setLinearLoading(false));
       if (saveUser) {
         setPageType("login");
-        showSuccessToast("Registration Successfull");
+        showSuccessToast("Registeration Successfull");
       }
     } catch (error) {
       dispatch(setLinearLoading(false));
