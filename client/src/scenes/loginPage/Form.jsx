@@ -62,20 +62,18 @@ const Form = ({ url }) => {
   const isRegister = pageType === "register";
 
   const register = async (values, onSubmitProps) => {
-    const formData = new FormData();
-
-    for (let value in values) {
-      formData.append(value, values[value]);
-    }
-
-    formData.append("picturePath", values.picture.name);
-
     try {
+      const formData = new FormData();
+      for (let value in values) {
+        formData.append(value, values[value]);
+      }
+
+      formData.append("picturePath", values.picture.name);
       dispatch(setLinearLoading(true));
       if (!formData.get("picturePath")) {
         throw new Error("Upload Image");
       }
-      const saveUserResponse = await fetch(`/auth/register`, {
+      const saveUserResponse = await fetch("/auth/register", {
         method: "POST",
         body: formData,
       });
@@ -93,7 +91,7 @@ const Form = ({ url }) => {
       dispatch(setLinearLoading(false));
       if (saveUser) {
         setPageType("login");
-        showSuccessToast("Registeration Successfull");
+        showSuccessToast("Registration Successfull");
       }
     } catch (error) {
       dispatch(setLinearLoading(false));
