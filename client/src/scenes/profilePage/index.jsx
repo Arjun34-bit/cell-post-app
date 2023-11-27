@@ -16,7 +16,8 @@ const ProfilePage = () => {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`users/${userId}`, {
+      const modifiedURL = `https://cell-post-app.onrender.com/users/${userId}`;
+      const response = await fetch(modifiedURL, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
