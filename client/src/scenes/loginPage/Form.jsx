@@ -73,10 +73,13 @@ const Form = ({ url }) => {
       if (!formData.get("picturePath")) {
         throw new Error("Upload Image");
       }
-      const saveUserResponse = await fetch("/auth/register", {
-        method: "POST",
-        body: formData,
-      });
+      const saveUserResponse = await fetch(
+        "http://localhost:3001/auth/register",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (saveUserResponse.status === 400) {
         throw new Error("Email Already Registered");
