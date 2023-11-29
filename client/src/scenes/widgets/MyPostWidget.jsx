@@ -24,7 +24,7 @@ import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "states";
+import { setLinearLoading, setPosts } from "states";
 import Dropzone from "react-dropzone";
 
 const MyPostWidget = ({ picturePath }) => {
@@ -38,27 +38,34 @@ const MyPostWidget = ({ picturePath }) => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const mediumMain = palette.neutral.medumMain;
   const main = palette.neutral.main;
+  const linearLoading = useSelector((state) => state.linearLoading);
 
   const handlePost = async () => {
-    const formData = new FormData();
-    formData.append("userId", _id);
-    formData.append("description", post);
+    try {
+      dispatch(setLinearLoading(true));
+      const formData = new FormData();
+      formData.append("userId", _id);
+      formData.append("description", post);
 
-    if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
+      if (image) {
+        formData.append("picture", image);
+        formData.append("picturePath", image.name);
+      }
+
+      const response = await fetch(`/posts`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      const posts = await response.json();
+      dispatch(setPosts({ posts }));
+      setImage(null);
+      setPost("");
+      dispatch(setLinearLoading(false));
+    } catch (error) {
+      dispatch(setLinearLoading(false));
     }
-
-    const response = await fetch(`/posts`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
-
-    const posts = await response.json();
-    dispatch(setPosts({ posts }));
-    setImage(null);
-    setPost("");
   };
   return (
     <WidgetWrapper>
@@ -166,6 +173,7 @@ const MyPostWidget = ({ picturePath }) => {
           POST
         </Button>
       </FlexBetween>
+      {linearLoading ? <LinearProgress /> : ""}
     </WidgetWrapper>
   );
 };
