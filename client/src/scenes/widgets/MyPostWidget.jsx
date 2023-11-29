@@ -174,7 +174,7 @@ const MyPostWidget = ({ picturePath }) => {
           POST
         </Button>
       </FlexBetween>
-      {linearLoading ? <LinearProgress /> : ""}
+      <div style={{ mt: "3px" }}>{linearLoading ? <LinearProgress /> : ""}</div>
     </WidgetWrapper>
   );
 };
